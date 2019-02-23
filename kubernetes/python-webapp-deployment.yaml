@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - name: hello-python
-        image: docuser200/python-webapp:1.0.0
+        image: BUILD_NO 
         ports:
         - containerPort: 9000
         envFrom:
