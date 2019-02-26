@@ -28,6 +28,39 @@ pipeline{
             }
 
         }
+        stage('Deploy Application to minikube'){
+            steps{
+                   sh'''
+                      #Create config file 
+                       mkdir ~/.kube
+                       echo "echo "apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /home/.minikube/ca.crt
+    server: https://192.168.99.100:8443
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    user: minikube
+  name: minikube
+current-context: minikube
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    client-certificate: /home/.minikube/client.crt
+    client-key: /home/.minikube/client.key" > ~/.kube/config
+            
+                   # apply yaml file
+                   kubectl apply -f kubernetes/python-redis-deployment.yaml 
+                   '''
+
+            }
+       } 
+
+
     }
 
 
