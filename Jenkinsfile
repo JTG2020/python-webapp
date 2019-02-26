@@ -3,7 +3,7 @@ pipeline{
         label 'docker-worker'
     }
     environment{
-        APP_IMAGE_NAME="hello-python:1.0.0"
+        APP_IMAGE_NAME="hello-python:${BUILD_NUMBER}"
         NEXUS_RAW_RELEASE_REPO='127.0.1.1:7502'
         NEXUS_APP_RELEASE_REPO='127.0.1.1:7505'
     }
