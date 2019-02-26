@@ -18,6 +18,16 @@ pipeline{
                 }
             }
         }
+        stage('Push image to Application Repo'){
+            steps{
+                withDockerRegistry([url: "http://${NEXUS_APP_RELEASE_REPO}", credentialsId: "8258d105-ddf8-43bc-8714-00718fe2cedc"]){
+                    sh '''
+                        docker push ${NEXUS_APP_RELEASE_REPO}/${APP_IMAGE_NAME}
+                    '''
+                }
+            }
+
+        }
     }
 
 
