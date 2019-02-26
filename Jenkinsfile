@@ -4,8 +4,8 @@ pipeline{
     }
     environment{
         APP_IMAGE_NAME="hello-python:${BUILD_NUMBER}"
-        NEXUS_RAW_RELEASE_REPO='127.0.1.1:7502'
-        NEXUS_APP_RELEASE_REPO='127.0.1.1:7505'
+        NEXUS_RAW_RELEASE_REPO='127.0.0.1:7502'
+        NEXUS_APP_RELEASE_REPO='127.0.0.1:7505'
     }
 
     stages{
