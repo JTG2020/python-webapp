@@ -20,7 +20,7 @@ pipeline{
         }
         stage('Push image to Application Repo'){
             steps{
-                withDockerRegistry([url: "DOCKERHUB_REGISTRY", credentialsId: "fb81a327-08b9-43f6-9e8e-95d99d7d01ed"]){
+                withDockerRegistry([url: "${DOCKERHUB_REGISTRY}", credentialsId: "fb81a327-08b9-43f6-9e8e-95d99d7d01ed"]){
                     sh '''
                         docker push ${DOCKER_REPO}/${APP_IMAGE_NAME}
                     '''
