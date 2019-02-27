@@ -32,7 +32,7 @@ pipeline{
         stage('Update image name in yaml'){
            steps{
                   sh'''
-                   sed -i 's/BUILD_NO/${NEXUS_APP_RELEASE_REPO}\/${APP_IMAGE_NAME}/g'  kubernetes/python-webapp-deployment.yaml
+                   sed -i "s/BUILD_NO/${NEXUS_APP_RELEASE_REPO}\\/${APP_IMAGE_NAME}/g"  kubernetes/python-webapp-deployment.yaml
                    cat kubernetes/python-webapp-deployment.yaml 
                   '''
            }
