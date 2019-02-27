@@ -29,9 +29,7 @@ spec:
         spec:
           containers:
           - name: python-redis
-            image: 127.0.0.1:7502/redis:5.0.3-alpine 
+            image: redis:5.0.3-alpine 
             imagePullPolicy: Always
             ports:
             - containerPort: 6379   
-          imagePullSecrets: 
-          - name: nexus-creds

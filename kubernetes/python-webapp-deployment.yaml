@@ -40,13 +40,11 @@ spec:
     spec:
       containers:
       - name: hello-python
-        image: BUILD_NO 
+        image: IMAGE_NAME 
         imagePullPolicy: Always
         ports:
         - containerPort: 9000
         envFrom:
           - configMapRef:
              name: python-webapp-config
-      imagePullSecrets: 
-        - name: nexus-creds
 

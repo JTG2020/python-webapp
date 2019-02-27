@@ -3,28 +3,27 @@ pipeline{
         label 'docker-worker'
     }
     environment{
-        APP_IMAGE_NAME="hello-python:${BUILD_NUMBER}"
-        NEXUS_RAW_RELEASE_REPO='127.0.0.1:7502'
-        NEXUS_APP_RELEASE_REPO='127.0.0.1:7505'
+        DOCKER_REPO="docuser200" 
+        APP_IMAGE_NAME="python-webapp:${BUILD_NUMBER}.0.0"
     }
 
     stages{
         stage('Build application image'){
             steps{
-                withDockerRegistry([url: "http://${NEXUS_RAW_RELEASE_REPO}", credentialsId: "8258d105-ddf8-43bc-8714-00718fe2cedc"]){
+        //        withDockerRegistry([url: "http://${NEXUS_RAW_RELEASE_REPO}", credentialsId: "8258d105-ddf8-43bc-8714-00718fe2cedc"]){
                     sh '''
-                        docker build -t ${NEXUS_APP_RELEASE_REPO}/${APP_IMAGE_NAME} -f Dockerfile .
+                        docker build -t ${DOCKER_REPO}/${APP_IMAGE_NAME} -f Dockerfile .
                     '''
-                }
+         //       }
             }
         }
         stage('Push image to Application Repo'){
             steps{
-                withDockerRegistry([url: "http://${NEXUS_APP_RELEASE_REPO}", credentialsId: "8258d105-ddf8-43bc-8714-00718fe2cedc"]){
+         //       withDockerRegistry([url: "http://${NEXUS_APP_RELEASE_REPO}", credentialsId: "8258d105-ddf8-43bc-8714-00718fe2cedc"]){
                     sh '''
-                        docker push ${NEXUS_APP_RELEASE_REPO}/${APP_IMAGE_NAME}
+                        docker push ${DOCKER_REPO}/${APP_IMAGE_NAME}
                     '''
-                }
+        //        }
             }
 
         }
@@ -32,7 +31,7 @@ pipeline{
         stage('Update image name in yaml'){
            steps{
                   sh'''
-                   sed -i "s/BUILD_NO/${NEXUS_APP_RELEASE_REPO}\\/${APP_IMAGE_NAME}/g"  kubernetes/python-webapp-deployment.yaml
+                   sed -i "s/IMAGE_NAME/${DOCKER_REPO}\\/${APP_IMAGE_NAME}/g"  kubernetes/python-webapp-deployment.yaml
                    cat kubernetes/python-webapp-deployment.yaml 
                   '''
            }
