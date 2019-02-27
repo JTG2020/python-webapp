@@ -1,4 +1,4 @@
-FROM 127.0.1.1:7502/python:3.7.2-alpine3.9
+FROM 127.0.0.1:7502/python:3.7.2-alpine3.9
 LABEL MAINTAINER developer_name
 
 WORKDIR /app

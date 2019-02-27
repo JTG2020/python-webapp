@@ -33,7 +33,7 @@ pipeline{
                    sh'''
                       #Create config file 
                        mkdir ~/.kube
-                       echo "echo "apiVersion: v1
+                       echo 'apiVersion: v1
 clusters:
 - cluster:
     certificate-authority: /home/.minikube/ca.crt
@@ -51,10 +51,12 @@ users:
 - name: minikube
   user:
     client-certificate: /home/.minikube/client.crt
-    client-key: /home/.minikube/client.key" > ~/.kube/config
+    client-key: /home/.minikube/client.key' > ~/.kube/config
             
                    # apply yaml file
                    kubectl apply -f kubernetes/python-redis-deployment.yaml 
+                   
+                   kubectl apply -f kubernetes/python-webapp-deployment.yaml
                    '''
 
             }
