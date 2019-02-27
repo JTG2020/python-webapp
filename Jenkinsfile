@@ -5,7 +5,7 @@ pipeline{
     environment{
         DOCKER_REPO="docuser200" 
         APP_IMAGE_NAME="python-webapp:${BUILD_NUMBER}.0.0"
-        DOCKERHUB_REGISTRY="https://index.docker.io" 
+        DOCKERHUB_REGISTRY="docker.io/docuser200/python-webapp" 
     }
 
     stages{
