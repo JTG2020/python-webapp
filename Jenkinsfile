@@ -5,6 +5,7 @@ pipeline{
     environment{
         DOCKER_REPO="docuser200" 
         APP_IMAGE_NAME="python-webapp:${BUILD_NUMBER}.0.0"
+        DOCKERHUB_REGISTRY="docker.io/docuser200/python-webapp" 
     }
 
     stages{
@@ -19,7 +20,7 @@ pipeline{
         }
         stage('Push image to Application Repo'){
             steps{
-         //       withDockerRegistry([url: "http://${NEXUS_APP_RELEASE_REPO}", credentialsId: "8258d105-ddf8-43bc-8714-00718fe2cedc"]){
+         //       withDockerRegistry([url: "DOCKERHUB_REGISTRY", credentialsId: "fb81a327-08b9-43f6-9e8e-95d99d7d01ed"]){
                     sh '''
                         docker push ${DOCKER_REPO}/${APP_IMAGE_NAME}
                     '''
