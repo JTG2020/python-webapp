@@ -76,7 +76,9 @@ users:
                     sh'''
                          docker rmi ${DOCKER_REPO}/${APP_IMAGE_NAME} 
                     '''
+           } 
        }
+   
 
     }
 
