@@ -36,4 +36,4 @@ def hello():
 
 # "port" on which application can be accessed. Make sure on local machine this port 9000 is available
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=9000)
+    app.run(host='0.0.0.0', port=8080)
