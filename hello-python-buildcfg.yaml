@@ -4,8 +4,10 @@ metadata:
   name: "python-webapp-pipeline"
 spec:
   source:
-    git: https://github.com/JTG2020/python-webapp.git
-    ref: openshift
+    git: 
+     uri: https://github.com/JTG2020/python-webapp.git
+     ref: openshift
   strategy:
     jenkinsPipelineStrategy:
       jenkinsfilePath: .
+    type: JenkinsPipeline 
