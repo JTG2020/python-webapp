@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - name: hello-python
-        image: IMAGE_NAME 
+        image: docuser200/python-webapp:34.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 9000
